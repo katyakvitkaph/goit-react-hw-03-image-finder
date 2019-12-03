@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+
 import Searchbar from './components/Searchbar/Searchbar';
-import 'react-toastify/dist/ReactToastify.css';
+
 import * as Api from './services/api';
 import ImageGallery from './components/ImageGallary/ImageGallery';
 import Modal from './components/Modal/Modal';
 import Button from './components/Button/Button';
 import Loader from './components/LoaderEl/LoaderEl';
 
-const noValue = () => toast('Error', { containerId: 'B' });
 export default class App extends Component {
   state = {
     pics: [],
@@ -39,7 +38,7 @@ export default class App extends Component {
           pics: resData.data.hits,
         }),
       )
-      .catch(noValue())
+      .catch(err => console.warn(err))
       .finally(() => this.setState({ isLoading: false }));
   };
 
@@ -55,7 +54,7 @@ export default class App extends Component {
           pageNumber: prevState.pageNumber + 1,
         })),
       )
-      .catch(noValue())
+      .catch(err => console.warn(err))
       .finally(() => {
         this.setState({
           isLoading: false,
@@ -88,7 +87,6 @@ export default class App extends Component {
     const { pics, isLoading, modalImage } = this.state;
     return (
       <div>
-        <ToastContainer />
         <Searchbar onSearch={this.onSearch} />
         <ImageGallery
           pics={pics}
