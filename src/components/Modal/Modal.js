@@ -5,7 +5,7 @@ import style from '../styles.module.css';
 const Modal = ({ onClose, pic, handleKeyPress }) => {
   return (
     <div
-      className="style.Overlay ImageGalleryItem"
+      className={`${style.Overlay} ${style.ImageGalleryItem}`}
       onClick={onClose}
       onKeyUp={e => handleKeyPress(e)}
       role="presentation"
